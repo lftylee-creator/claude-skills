@@ -7,7 +7,12 @@ Claude Code용 커스텀 스킬 모음입니다. 인생푸드 실무에 바로 �
 | 스킬 | 설명 |
 |---|---|
 | [skills/news-clipping](skills/news-clipping/SKILL.md) | 어제자 식품·외식·농산물·공급망 뉴스를 Tier 1 매체(Bloomberg, CNBC)에서 모아 벤토 그리드 HTML로 정리 |
-| [skills/vendor-reply-draft](skills/vendor-reply-draft/SKILL.md) | 거래처·납품업체·경쟁사에서 받은 메일의 핵심 요청을 정리하고, 공식체·정중한 톤으로 답장 초안 작성 |
+| [skills/vendor-reply-draft](skills/vendor-reply-draft/SKILL.md) | 원육 등 단가 인상 통보를 받았을 때 우리 쪽 거래 데이터(단가 이력·물량·계약조건)를 근거로 방어 협상 메일 초안 작성 (일반 거래처/경쟁사 답장에도 사용) |
+
+## 두 스킬의 연결
+
+1. `news-clipping`이 "원육 가격 상승" 같은 업계 이슈를 먼저 캐치한다.
+2. 그 이슈가 실제로 거래처의 단가 인상 통보로 이어지면, `vendor-reply-draft`가 우리 쪽 거래 데이터를 근거로 방어적 협상 메일 초안을 만든다.
 
 ## 설치 방법
 
