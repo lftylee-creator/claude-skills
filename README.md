@@ -1,43 +1,39 @@
-# news-clipping-skill
+# claude-skills
 
-Claude Code용 커스텀 스킬입니다. Tier 1 영어 매체(Bloomberg, CNBC 등)에서 어제자 식품·외식·농산물·공급망 뉴스를 모아 벤토 그리드 디자인의 HTML 클리핑으로 정리합니다.
+Claude Code용 커스텀 스킬 모음입니다. 인생푸드 실무에 바로 쓰는 반복 업무를 자동화합니다.
 
-## 무엇을 하는 스킬인가
+## 스킬 목록
 
-- 매일/매주 반복되는 "업계 뉴스 정리" 업무를 자동화
-- 신뢰할 수 있는 매체 화이트리스트만 사용 (역할: 정확도 우선)
-- 날짜를 매번 스크립트로 실제 계산해 "어제" 기준을 보장
-- 검색 결과 기반이라는 한계를 결과물에 명시(본문 미검증 사실을 숨기지 않음)
-- 최종 결과물은 시각적으로 스캔하기 쉬운 벤토 그리드 HTML(Artifact)
-
-자세한 동작 절차는 [SKILL.md](SKILL.md)를 참고하세요.
+| 스킬 | 설명 |
+|---|---|
+| [skills/news-clipping](skills/news-clipping/SKILL.md) | 어제자 식품·외식·농산물·공급망 뉴스를 Tier 1 매체(Bloomberg, CNBC)에서 모아 벤토 그리드 HTML로 정리 |
+| [skills/vendor-reply-draft](skills/vendor-reply-draft/SKILL.md) | 거래처·납품업체·경쟁사에서 받은 메일의 핵심 요청을 정리하고, 공식체·정중한 톤으로 답장 초안 작성 |
 
 ## 설치 방법
 
-`~/.claude/skills/news-clipping/` 경로에 이 저장소 내용을 복사하면 Claude Code가 자동으로 인식합니다.
+원하는 스킬 폴더를 `~/.claude/skills/<스킬명>/`에 복사하면 Claude Code가 자동으로 인식합니다.
 
 ```bash
-git clone https://github.com/<your-account>/news-clipping-skill.git ~/.claude/skills/news-clipping
+git clone https://github.com/lftylee-creator/claude-skills.git
+cp -r claude-skills/skills/news-clipping ~/.claude/skills/
+cp -r claude-skills/skills/vendor-reply-draft ~/.claude/skills/
 ```
 
 ## 사용 예시
 
-Claude Code에서 다음과 같이 요청하면 이 스킬이 자동으로 트리거됩니다.
-
-- "뉴스 클리핑 해줘"
-- "어제 식품 업계 뉴스 정리해줘"
-- "식품 업계 뉴스 모아줘"
+- "뉴스 클리핑 해줘" / "어제 식품 업계 뉴스 정리해줘" → `news-clipping` 스킬 자동 실행
+- "이 메일 답장 초안 써줘" / "거래처 메일에 답장" → `vendor-reply-draft` 스킬 자동 실행
 
 ## 구조
 
 ```
-news-clipping/
-├── SKILL.md              # 스킬 절차 정의 (핵심 파일)
-├── references/
-│   ├── sources.md        # 매체 화이트리스트와 선정 근거
-│   └── queries.md        # 카테고리별 검색어 가이드
-├── scripts/
-│   └── get_dates.sh      # 날짜(어제) 계산 스크립트
-└── evals/
-    └── evals.json        # 스킬 검증용 테스트 케이스
+skills/
+├── news-clipping/
+│   ├── SKILL.md
+│   ├── references/    # 매체 화이트리스트, 검색어 가이드
+│   ├── scripts/        # 날짜 계산 스크립트
+│   └── evals/          # 테스트 케이스
+└── vendor-reply-draft/
+    ├── SKILL.md
+    └── references/     # 톤 가이드, 상황별 문구
 ```
